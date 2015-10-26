@@ -12,6 +12,16 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def sign_in
+    login = params[:user][:login]
+    email = params[:user][:email]
+    password = params[:user][:password_digest]
+    @user = User.find_by(login: login, email: email, password_digest: password)
+    if @user
+      render :sign_in
+    end
+  end
+
   def destroy
   end
 end
