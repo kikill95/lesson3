@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
-  post 'user/sign_in' => 'users#sign_in', as: :sign
+  post 'user/sign_in' => 'users#sign_in', as: :sign_in
+  get 'user/sign_out' => 'users#sign_out', as: :sign_out
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
