@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params.require(:user).permit!)
     if @user.save
-      Session.create(api_key: @user.id)
+      # Session.create(api_key: @user.id)
       session[:api_key] = @user.id
       redirect_to root_path
     else
