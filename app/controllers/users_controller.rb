@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params.require(:user).permit!)
     if @user.save
-      # Session.create(api_key: @user.id)
+      Session.create(api_key: @user.id)
       session[:api_key] = @user.id
       redirect_to root_path
     else
@@ -23,6 +23,7 @@ class UsersController < ApplicationController
       password = params[:user][:password_digest]
       @user = User.find_by(login: login, email: email, password_digest: password)
       if @user
+        Session.create(api_key: @user.id)
         session[:api_key] = @user.id
         render :sign_in
       end
